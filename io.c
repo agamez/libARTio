@@ -4,6 +4,9 @@
 
 #include "io_controllers.h"
 
+static const struct lart_io_ops null_controller = { 0 };
+REGISTER_IO_CONTROLLER(null_controller);
+
 struct lart_io *lart_io_open(const char *uri)
 {
 	if (!uri)
