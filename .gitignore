@@ -1,0 +1,10 @@
+# CMake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+# Build outputs
+libARTio.pc
+libARTio.so
+libARTio.so.1
