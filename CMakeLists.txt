@@ -19,6 +19,8 @@ include_directories(
 
 set(libARTio_SRCS
 	io.c
+
+	io_open.c
 )
 
 set(libARTio_PUBLIC_HDRS
