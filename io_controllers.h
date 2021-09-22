@@ -16,7 +16,7 @@
 struct lart_io_ops {
 	char *address_type;
 
-	struct lart_io *(*open)(const char *uri);
+	struct lart_io *(*open)(struct lart_io_uri *uri);
 	int (*close)(struct lart_io *art_io);
 
 	ssize_t (*write)(struct lart_io *art_io, const void *buf, size_t count);

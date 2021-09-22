@@ -4,6 +4,18 @@
 #include <unistd.h>
 #include <inttypes.h>
 
+#define LART_IO_URI_MAX_PARAMETERS 8
+#define LART_IO_URI_MAX_OPTIONS 8
+
+struct lart_io_uri {
+	char *address_type;
+
+	char *parameters[LART_IO_URI_MAX_PARAMETERS];
+	char *options[LART_IO_URI_MAX_OPTIONS];
+};
+int lart_io_parse_uri(const char *uri, struct lart_io_uri *io_uri);
+void lart_free_uri(struct lart_io_uri *io_uri);
+
 struct lart_io;
 
 struct lart_io *lart_io_open(const char *uri);
