@@ -1,9 +1,29 @@
+#include <errno.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "io_controllers.h"
 
 struct lart_io *lart_io_open(const char *uri)
 {
+	if (!uri)
+		return NULL;
+
+	extern struct lart_io_ops *__start_io_controllers;
+	extern struct lart_io_ops *__stop_io_controllers;
+	struct lart_io_ops **ops;
+
+	/* Call 'address_type:' associated controller */
+	const size_t address_type_length = strcspn(uri, ":");
+	for (ops = &__start_io_controllers; ops < &__stop_io_controllers; ops++) {
+		if ((*ops)->address_type)
+			if (!strncmp(uri, (*ops)->address_type, address_type_length))
+				if ((*ops)->open)
+					return (*ops)->open(uri);
+	}
+
+	errno = EINVAL;
+	return NULL;
 }
 
 int lart_io_close(struct lart_io *io)
