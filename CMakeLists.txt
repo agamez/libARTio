@@ -21,6 +21,7 @@ set(libARTio_SRCS
 	io.c
 
 	io_open.c
+	io_spidev.c
 )
 
 set(libARTio_PUBLIC_HDRS
